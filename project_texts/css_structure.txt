@@ -1,0 +1,31 @@
+resources/css/
+│
+├── app.css
+│
+├── base/
+│   ├── reset.css
+│   ├── typography.css
+│   └── variables.css
+│
+├── layout/
+│   ├── site.css
+│   └── admin.css
+│
+├── components/
+│   ├── buttons.css
+│   ├── forms.css
+│   ├── modal.css
+│   └── tables.css
+│
+├── navigation/
+│   ├── site-nav.css
+│   └── admin-nav.css
+│
+└── pages/
+    └── admin-dashboard.css
+
+На данный момент:
+resources/css/
+├── app.css
+├── layout/admin.css
+└── navigation/admin-nav.css

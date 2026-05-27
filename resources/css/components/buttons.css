@@ -1,0 +1,42 @@
+@layer components {
+    .button {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply px-4 py-2 rounded-xl;
+        @apply text-sm font-medium;
+        @apply transition;
+    }
+    .button--primary {
+        @apply bg-gray-900 text-white;
+        @apply hover:bg-gray-800;
+    }
+    .button--secondary {
+        @apply bg-gray-100 text-gray-800;
+        @apply hover:bg-gray-200;
+    }
+    .button--danger {
+        @apply bg-red-600 text-white;
+        @apply hover:bg-red-700;
+    }
+    .button--success {
+        @apply bg-green-600 text-white;
+        @apply hover:bg-green-700;
+    }
+    .button-link {
+        @apply inline-flex items-center gap-1;
+        @apply text-sm font-medium text-blue-600;
+        @apply transition;
+        @apply hover:text-blue-700 hover:underline;
+    }
+    .button-close {
+        @apply inline-flex items-center justify-center;
+        @apply rounded-lg;
+        @apply text-gray-400;
+        @apply transition;
+        @apply hover:bg-red-50;
+        @apply hover:text-red-500;
+    }
+    .button-close--sm {@apply w-8 h-8;}
+    .button-close--md {@apply w-9 h-9;}
+    .button-close--lg {@apply w-11 h-11;}
+
+}

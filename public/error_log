@@ -1,0 +1,2 @@
+[08-May-2026 22:27:40 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\PageController::draft() in /home/mikalayt/site.elita.by/app/Http/Controllers/PageController.php on line 28
+[08-May-2026 22:27:43 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\PageController::draft() in /home/mikalayt/site.elita.by/app/Http/Controllers/PageController.php on line 28

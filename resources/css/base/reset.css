@@ -1,0 +1,24 @@
+@layer base {
+    /* А это реально крутая вещь, привязываем rem к размеру экрана. */
+    html {
+    font-size: clamp(0.785rem, 1.5vw, 1.125rem);
+    line-height: clamp(1.35rem, 2vw, 1.75rem);
+    scroll-behavior: smooth;
+    }    
+    html, body {@apply min-h-screen m-0 p-0;}
+    body {@apply flex flex-col bg-gray-100 text-gray-900 antialiased;}
+    footer, section {@apply py-8}
+    *,*::before,*::after {box-sizing: border-box;}
+    img,svg,video,canvas {@apply block max-w-full;}
+    img {@apply object-cover;}
+    a {@apply text-inherit no-underline;}
+    button {@apply bg-transparent border-0;}
+    button,a {@apply cursor-pointer;}
+    input,textarea,select,button {font: inherit;}
+    input,textarea,select {@apply outline-none;}
+    textarea {resize: vertical;}
+    ul,ol {@apply list-none m-0 p-0;}
+    table {border-collapse: collapse;}
+    /* Пока не загрузится alpine, скрываем управляемый контент */
+    [x-cloak] {display: none !important;}
+}

@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@import "./layouts/admin-layout.css";
+@import "./base/reset.css";
+@import "./navigation/admin-nav.css";
+@import "./navigation/site-nav.css";
+@import "./components/admin-header.css";
+@import "./components/modal.css";
+@import "./components/site-header.css";
+@import "./components/tables.css";
+@import "./components/forms.css";
+@import "./components/buttons.css";
+@import "./pages/services.css";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@theme {
+    --font-sans: 'Roboto', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol', 'Noto Color Emoji';
+    /* --font-script: Great Vibes, cursive; */
+    /* --font-moon: "Moon Dance", cursive; */
+    --breakpoint-xs: 32rem;
+}
+
+
+
+@layer components {
+    /* =======================================================
+        LAYOUT
+    ======================================================= */
+    .my-container {
+        @apply container mx-auto px-4;
+    }
+    .app-main {
+        @apply flex-1 pt-20;
+    }
+    .app-footer {
+        @apply text-center bg-gray-900 text-gray-300;    }
+
+    /* =======================================================
+        HEADER
+    ======================================================= */
+
+    
+    /* =======================================================
+        DESKTOP MENU
+    ======================================================= */
+
+    
+
+    /* =======================================================
+        MOBILE MENU
+    ======================================================= */
+    
+
+        
+
+    
+                
+
+    
+    
+
+    
+
+    
+
+    
+
+    /* Это я уже забыл, для чего */
+    .link-wrap {@apply flex flex-wrap gap-y-8 justify-around items-center}
+    .link-wrap>article {@apply w-8/12 sm:w-5/12 lg:w-3/12 flex flex-col items-center gap-y-2}    
+    .link-wrap>article {@apply overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:scale-105}
+    .link-wrap>article>h2>a:hover {@apply text-amber-950 transition-colors duration-300}
+    .link-wrap>article>h2>a>span:nth-child(1) {@apply text-xl font-semibold}
+
+    .pagin-list>div:last-of-type>nav>div:nth-child(2)>div:nth-child(1)>p {@apply text-blue-700}
+}
+
+@layer utilities {
+    
+}

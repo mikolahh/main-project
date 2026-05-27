@@ -1,0 +1,58 @@
+ssh mikalayt@vh116.hoster.by -p 22  8zfLIl2D)^  cd site.elita.by
+composer create-project laravel/laravel .
+npm install
+npm run build
+npm install alpinejs
+
+npm install -D tailwindcss - в некоторых случаях необходимо устанавливать таким образом
+npx tailwindcss init
+
+php artisan config:clear
+php artisan cache:clear
+php artisan migrate
+php artisan make:controller -h
+php artisan make:controller PageController
+
+composer require livewire/livewire - установка
+после установки livewire следует понимать, что livewire жестко включает в себя alpine.js и его больше нигде и никак подключать не нужно, просто ставим:
+@livewireStyles перед </head>
+и @livewireScripts перед </body>
+а <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>  удаляем или закомментирываем
+а также удаляем, если есть, из app.js:
+import Alpine from 'alpinejs'
+Alpine.start()
+
+
+php artisan make:livewire livewire.callback-form --mfc
+php artisan make:model CallbackMessage -m
+
+
+php artisan make:livewire livewire.forms.callback --mfc
+php artisan make:livewire livewire.forms.user-create --mfc
+
+
+php artisan make:controller UserController
+
+
+php artisan make:migration add_role_to_users_table
+php artisan make:migration create_posts_table
+
+php artisan config:clear
+php artisan cache:clear
+
+php artisan make:livewire livewire.forms.user-forg-psw --mfc
+php artisan make:livewire livewire.forms.user-res-psw --mfc
+php artisan make:livewire reset-password --class
+
+
+
+php artisan make:livewire Forms/UserReg --class
+php artisan make:livewire Forms/Callback --class
+php artisan make:livewire Forms/UserAuth --class
+php artisan make:livewire Forms/UserForgPsw --class
+php artisan make:component Ui/Modal
+php artisan make:livewire Forms/UserResPsw --class
+php artisan make:livewire Widgets/Header --class
+composer require diglactic/laravel-breadcrumbs
+php artisan make:migration create_posts_table
+php artisan make:migration add_role_to_users_table

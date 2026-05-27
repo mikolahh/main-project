@@ -1,0 +1,514 @@
+Для твоего проекта сейчас оптимальная архитектура админки — это:
+
+НЕ отдельный frontend на Vue/React
+НЕ отдельный API
+НЕ тяжелые admin-пакеты
+а именно:
+Laravel + Livewire + Alpine
+То есть:
+SPA-like UX
+без перезагрузок
+серверный рендеринг
+реактивность
+минимум JS
+полная интеграция с auth/policies/routes
+И это идеально совпадает с тем стеком, который ты уже выстроил.
+
+Что тебе НЕ нужно сейчас
+1. Filament
+Filament
+Очень популярно.
+НО.
+Filament:
+навязывает архитектуру
+UI-kit
+resource-system
+panel-system
+forms/tables abstraction
+Для CRM это отлично.
+Для твоего кастомного SEO-бизнес-сайта + микросервисов — начнет мешать.
+Особенно:
+uiLayer
+custom navigation
+собственный UX
+собственные widgets
+2. Nova
+Laravel Nova
+Платно.
+Тоже heavy abstraction.
+Не твой случай
+3. Отдельный SPA
+Например:
+React
+Vue
+Nuxt
+Next
+Это преждевременно.
+Ты сразу получишь:
+API layer
+Sanctum/JWT
+duplication validation
+separate routing
+frontend deployment
+frontend build complexity
+Сейчас это только усложнит проект.
+
+Что тебе идеально подходит
+Архитектура
+Admin Panel=
+Laravel pages
++
+Livewire widgets
++
+Alpine UI
+Это будет ощущаться как SPA
+
+Потому что:
+Livewire navigate
+reactive tables
+modals
+filters
+search
+pagination
+Alpine transitions
+дадут SPA UX.
+
+Как я бы строил твою админку
+
+Структура
+resources/views/
+
+├── layouts/
+│   └── admin.blade.php
+
+├── pages/
+│   └── admin/
+│       ├── dashboard.blade.php
+│       ├── users.blade.php
+│       └── admins.blade.php
+
+├── livewire/
+│   └── admin/
+│       ├── users-table.blade.php
+│       ├── admins-table.blade.php
+│       ├── user-search.blade.php
+│       └── stats-widget.blade.php
+
+Routes
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::get('/', AdminDashboard::class)
+            ->name('admin.dashboard');
+
+        Route::get('/users', AdminUsers::class)
+            ->name('admin.users');
+
+        Route::get('/admins', AdminAdmins::class)
+            ->middleware('owner')
+            ->name('admin.admins');
+    });
+
+    Middleware
+
+    admin middleware
+    return auth()->check()
+    && auth()->user()->role >= 2;
+
+    owner middleware
+    return auth()->check()
+    && auth()->user()->role === 3;
+
+    Роли
+
+Ты уже почти готов к production role system.
+Я бы рекомендовал:
+enum UserRole: int
+{
+    case USER = 1;
+    case ADMIN = 2;
+    case OWNER = 3;
+}
+
+Почему enum — обязательно
+Потому что скоро у тебя появятся:
+permissions
+parser operators
+managers
+support
+moderators
+И magic numbers превратятся в хаос.
+Таблица users
+Добавить:
+last_seen_at
+Migration
+
+Migration
+$table->timestamp('last_seen_at')->nullable();
+
+Обновление last_seen_at
+Через middleware.
+Например:
+if (auth()->check()) {
+    auth()->user()->updateQuietly([
+        'last_seen_at' => now()
+    ]);
+}
+Но:
+не на каждый request
+а раз в N минут
+иначе будет DDOS по БД.
+
+Админка как SPA
+Вот тут самое интересное.
+Livewire v3 navigate
+Ты уже используешь:
+navigate
+event-flow
+uiLayer
+Добавь:
+wire:navigate
+например:
+<a
+    href="{{ route('admin.users') }}"
+    wire:navigate
+    >
+    Пользователи
+</a>
+
+И получишь SPA
+Без:
+Vue router
+React router
+API
+
+Как будет выглядеть admin layout
+layouts/admin.blade.php
+<body class="admin-layout">
+    @livewire('admin.sidebar')
+    <main class="admin-content">
+        {{ $slot }}
+    </main>
+</body>
+
+Sidebar
+Livewire component
+livewire/admin/sidebar
+Внутри:
+dashboard
+users
+admins
+logs
+settings
+parsers
+queues
+statistics
+
+Таблицы
+Livewire tables
+Например:
+livewire/admin/users-table
+Внутри:
+search
+sorting
+pagination
+filters
+delete actions
+role actions
+
+И всё без JS-framework
+Анимации
+Оставляешь:
+Alpine
+x-transition
+uiLayer
+А вот это тебе очень пригодится
+Action confirmation modal
+
+Например:
+Удалить пользователя?
+через:
+uiLayer
+confirm modal
+event-flow
+И это будет production UX
+
+Очень важно
+НЕ делай сейчас:
+универсальный CRUD engine
+dynamic resources
+abstraction over abstraction
+Делай:
+конкретные страницы
++
+конкретные widgets
++
+конкретные actions
+
+Потому что позже ты придешь к:
+admin domain architecture
+естественным путем.
+Что я бы рекомендовал сделать сейчас
+Порядок.
+Этап 1
+Инфраструктура
+admin layout
+admin routes
+middleware
+sidebar
+topbar
+
+Этап 2
+Users page
+users table
+search
+pagination
+delete
+
+Этап 3
+Admins page
+owner only
+assign admin
+revoke admin
+
+Этап 4
+UI system
+confirm modal
+notifications
+loading states
+
+Этап 5
+Analytics
+users online
+registrations
+parser statistics
+queues
+telegram notifications
+И это уже будет не "админка"
+А:
+internal control panel
+Что намного ценнее архитектурно.
+
+Да, следующий правильный шаг — это именно enum для ролей.
+Ты сейчас переходишь от:
+"просто сайта"
+к:
+domain architecture
+И enum — фундамент этого.
+Этап 1. Enum ролей
+Создай:
+app/Enums/UserRole.php
+<?php
+namespace App\Enums;
+enum UserRole: int
+{
+    case USER = 1;
+    case ADMIN = 2;
+    case OWNER = 3;
+
+    public function label(): string
+    {
+        return match($this) {
+            self::USER => 'Пользователь',
+            self::ADMIN => 'Администратор',
+            self::OWNER => 'Владелец',
+        };
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->value >= self::ADMIN->value;
+    }
+
+    public function isOwner(): bool
+    {
+        return $this === self::OWNER;
+    }
+}
+
+Почему это важно
+Теперь:
+ВМЕСТО:
+if ($user->role === 3)
+будет:
+if ($user->roleEnum()->isOwner())
+Это:
+читаемо
+безопасно
+масштабируемо
+
+Этап 2. Подключаем enum к User
+app/Models/User.php
+Добавь:
+use App\Enums\UserRole;
+Далее
+protected $casts = [
+    'role' => UserRole::class,
+];
+Что это даст
+Laravel автоматически преобразует:
+1 → UserRole::USER
+2 → UserRole::ADMIN
+3 → UserRole::OWNER
+И теперь:
+Auth::user()->role
+будет возвращать:
+UserRole::ADMIN
+а не число.
+
+Проверка
+Теперь можно:
+dd(Auth::user()->role);
+Получишь:
+App\Enums\UserRole::ADMIN
+
+Этап 3. Добавляем helper methods в User
+Это сильно упростит код.
+User.php
+Добавь:
+public function isAdmin(): bool
+{
+    return $this->role->isAdmin();
+}
+
+public function isOwner(): bool
+{
+    return $this->role->isOwner();
+}
+
+Теперь можно:
+auth()->user()->isAdmin()
+и:
+auth()->user()->isOwner()
+
+Этап 4. Middleware
+Создай middleware
+php artisan make:middleware AdminMiddleware
+app/Http/Middleware/AdminMiddleware.php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class AdminMiddleware
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (
+            !auth()->check()
+            || !auth()->user()->isAdmin()
+        ) {
+            abort(403);
+        }
+
+        return $next($request);
+    }
+}
+Owner middleware
+php artisan make:middleware OwnerMiddleware
+app/Http/Middleware/OwnerMiddleware.php
+
+<?php
+namespace App\Http\Middleware;
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class OwnerMiddleware
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (
+            !auth()->check()
+            || !auth()->user()->isOwner()
+        ) {
+            abort(403);
+        }
+
+        return $next($request);
+    }
+}
+
+Этап 5. Регистрация middleware
+Laravel 11+:
+bootstrap/app.php
+Добавь:
+->withMiddleware(function ($middleware) {
+
+    $middleware->alias([
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'owner' => \App\Http\Middleware\OwnerMiddleware::class,
+    ]);
+
+})
+
+Этап 6. Admin routes
+routes/web.php
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::view('/', 'pages.admin.dashboard')
+            ->name('dashboard');
+
+        Route::view('/users', 'pages.admin.users')
+            ->name('users');
+
+        Route::middleware('owner')
+            ->group(function () {
+                Route::view('/admins', 'pages.admin.admins')
+                    ->name('admins');
+            });
+    });
+
+Этап 7. Страницы
+Создай:
+resources/views/pages/admin/dashboard.blade.php
+resources/views/pages/admin/users.blade.php
+resources/views/pages/admin/admins.blade.php
+Пример
+<x-layouts.admin>
+    <h1>
+        Панель управления
+    </h1>
+</x-layouts.admin>
+НО.
+ВАЖНО
+Ты сейчас используешь:
+{{ $slot }}
+в layout.
+Это значит:
+layout должен быть Blade component layout
+А не просто include layout.
+
+Поэтому
+Либо:
+
+Вариант 1 (лучший)
+Сделать:
+resources/views/components/layouts/admin.blade.php
+и использовать:
+<x-layouts.admin>
+Либо
+Оставить:
+обычный layout
+extends/@section
+
+Я рекомендую Вариант 1
+Потому что:
+современный Blade
+cleaner
+ближе к Livewire architecture
+Следующий этап после этого
+Будет:
+admin sidebar
++
+topbar
++
+navigation architecture
+И там уже начнется самое интересное.

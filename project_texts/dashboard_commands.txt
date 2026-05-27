@@ -1,0 +1,31 @@
+php artisan make:component layouts.admin
+php artisan make:livewire pages.admin.dashboard --class
+php artisan make:livewire pages.admin.users --class
+php artisan make:livewire pages.admin.admins --class
+php artisan make:middleware RoleMiddleware
+php artisan optimize:clear
+php artisan make:livewire pages.admin.base-admin-page --class
+php artisan make:livewire widgets.tables.users-table --class
+php artisan make:component Admin/PageHeader
+php artisan migrate:fresh
+php artisan tinker
+\App\Models\User::factory()->count(100)->create();
+\App\Models\User::factory()->admin()->count(15)->create();
+php artisan make:component Admin/SortableHeader
+composer require mallardduck/blade-lucide-icons - устанавливаем иконки (lucide-icons)
+php artisan icons:cache
+php artisan icons:clear
+php artisan make:livewire Forms/Admin/EditUser --class
+php artisan optimize:clear
+
+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
+…or create a new repository on the command line
+echo "# main-project" >> README.md
+git init
+git add README.md
+git add .
+git commit -m "initial"
+git branch -M main
+git remote add origin https://github.com/mikolahh/main-project.git
+git push -u origin main
+ssh mikalayt@vh116.hoster.by -p 22 cd site.elita.by

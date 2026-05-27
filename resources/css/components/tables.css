@@ -1,0 +1,100 @@
+@layer components {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Table
+    |--------------------------------------------------------------------------
+    */
+    .admin-table-section {@apply space-y-4;}
+    .admin-table-toolbar {@apply flex items-center justify-between mb-4 gap-4;}
+    .admin-table-toolbar__search {@apply w-full max-w-sm;}
+    .admin-table-wrapper {@apply bg-white border border-gray-200 rounded-xl
+        overflow-hidden;}
+    .admin-table-container {@apply overflow-x-auto;}
+    .admin-table {@apply w-full border-collapse;}
+    .admin-table__head {@apply bg-gray-50 border-b border-gray-200;}
+    .admin-table__row {@apply border-b border-gray-100;}
+    .admin-table__th {@apply px-6 py-4 text-left text-xs font-semibold
+        uppercase tracking-wide text-gray-500;}
+    .admin-table__cell {@apply px-6 py-3 text-sm text-gray-700
+        whitespace-nowrap border border-gray-700;}
+    .admin-table__empty {@apply px-6 py-10 text-center text-sm text-gray-500;}
+    .admin-table-pagination {@apply px-6 py-4 border-t border-gray-200 bg-white;}
+
+    .admin-table__sort {
+        @apply inline-flex items-center gap-2 select-none;
+        @apply transition;
+    }
+    .admin-table__sort:hover {@apply text-gray-900;}
+    .admin-table__sort-icon {@apply text-xs text-gray-600;}
+    /*
+    |--------------------------------------------------------------------------
+    | Admin empty state
+    |--------------------------------------------------------------------------
+    */
+    .admin-empty-state {@apply px-6 py-16 flex items-center justify-center;}
+    .admin-empty-state__content {@apply text-center;}
+    .admin-empty-state__title {@apply text-base font-semibold text-gray-900;}
+    .admin-empty-state__description {@apply mt-2 text-sm text-gray-500;}
+    /*
+    |--------------------------------------------------------------------------
+    | Admin loading states
+    |--------------------------------------------------------------------------
+    */
+    .admin-table-wrapper-container {@apply relative;}
+    .admin-table-wrapper--loading {@apply opacity-50 pointer-events-none;}
+    /*
+    |--------------------------------------------------------------------------
+    | Admin loader overlay
+    |--------------------------------------------------------------------------
+    */
+    .admin-table-loader {
+        @apply absolute inset-0 z-10 hidden items-center justify-center;
+        @apply bg-white/60 backdrop-blur-[1px];
+    }
+    .admin-table-loader__content {
+        @apply flex items-center gap-3 rounded-lg bg-white px-4 py-3 shadow-sm border border-gray-200;
+        @apply text-sm font-medium text-gray-700;
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | spinner
+    |--------------------------------------------------------------------------
+    */
+    .admin-table-loader__spinner {
+        @apply w-14 h-14 rounded-full border-2 border-gray-300 border-t-gray-900 animate-spin;
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | actions
+    |--------------------------------------------------------------------------
+    */
+    .admin-table__th--actions {
+        @apply w-px whitespace-nowrap;
+    }
+    .admin-table-actions {
+        @apply flex items-center gap-2;
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | icons
+    |--------------------------------------------------------------------------
+    */
+    .admin-icon-button {
+        @apply inline-flex items-center justify-center;
+        @apply w-9 h-9 rounded-lg;
+        @apply border border-gray-300 bg-white;
+        @apply text-gray-600;
+        @apply transition;
+        @apply hover:bg-gray-50 hover:text-gray-900 hover:border-gray-400;
+        @apply focus:outline-none focus:ring-2 focus:ring-gray-900/10;
+    }
+
+    .admin-icon-button--danger {
+        @apply text-red-600 border-red-200;
+        @apply hover:bg-red-50 hover:border-red-300 hover:text-red-700;
+    }
+    .admin-icon-button__icon {
+        @apply w-4 h-4;
+    }
+}

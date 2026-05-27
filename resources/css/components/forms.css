@@ -1,0 +1,61 @@
+@layer components {
+    /* компоненты для authUI и admin от chatgpt */
+    .form-group {
+        @apply flex flex-col gap-1;
+    }
+    .form-label {
+        @apply text-sm font-medium text-gray-700;
+    }
+    .form-input {
+        @apply w-full rounded-xl border border-gray-300 bg-white;
+        @apply px-4 py-2 text-sm text-gray-900;
+        @apply placeholder:text-gray-400;
+        @apply transition;
+        @apply focus:outline-none;
+        @apply focus:ring-2 focus:ring-gray-900/10;
+        @apply focus:border-gray-900;
+    }
+
+    .form-stack {
+    @apply flex flex-col gap-4;
+    }
+
+    .form-actions {
+        @apply flex items-center gap-3 pt-2;
+    }
+
+    .form-actions {
+        @apply flex items-center justify-center gap-3;
+    }
+    .form-error {
+        @apply text-red-500 text-xs;
+    }
+    
+
+    
+
+    
+       
+
+    /*
+    |--------------------------------------------------------------------------
+    |   actions dropdown system
+    |--------------------------------------------------------------------------
+    */
+    .admin-dropdown {@apply relative;}
+    .admin-dropdown__menu {
+        @apply absolute right-0 top-full mt-2 z-20;
+        @apply min-w-44 rounded-xl border border-gray-200 bg-white shadow-lg;
+        @apply py-1;
+    } 
+
+    .admin-dropdown__item {
+        @apply w-full flex items-center gap-3;
+        @apply px-4 py-2 text-sm text-gray-700;
+        @apply transition;
+        @apply hover:bg-gray-100;
+    }
+    .admin-dropdown__item--danger {@apply text-red-600;}
+    .admin-dropdown__item--danger:hover {@apply bg-red-50;}
+    .admin-dropdown__icon {@apply w-4 h-4 shrink-0;}    
+}

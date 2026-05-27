@@ -1,0 +1,46 @@
+@layer components {    
+    /*
+    |--------------------------------------------------------------------------
+    | site desctop menu
+    |--------------------------------------------------------------------------
+    */
+    .desktop-menu {
+        @apply hidden md:flex items-center gap-8 text-yellow-400 font-medium;
+    }
+    .desktop-menu a,
+    .desktop-menu button {@apply transition-colors duration-300 hover:text-yellow-200;}
+    .menu-item-active {@apply text-white font-bold;}
+    .menu-dropdown {@apply relative;}
+    .menu-dropdown-trigger {@apply flex items-center gap-2;}
+    .menu-dropdown-trigger button {@apply transition-transform duration-300;}
+    .dropdown-open {@apply rotate-180 text-yellow-200;}
+    .dropdown-menu {@apply absolute top-full left-0 min-w-max bg-gray-800
+        rounded-xl shadow-2xl py-3 px-4 space-y-2;}
+    .submenu-item {@apply relative;}
+    .submenu-trigger {@apply flex items-center justify-between gap-4;}
+    .submenu {@apply absolute left-full top-0 min-w-max bg-gray-800 rounded-xl
+        shadow-2xl py-3 px-4 space-y-2;}
+    .menu-user {@apply text-white;}
+    /*
+    |--------------------------------------------------------------------------
+    | site mobile menu
+    |--------------------------------------------------------------------------
+    */
+    .burger-btn {@apply flex flex-col justify-between w-8 h-7 text-yellow-400;}
+    .burger-btn:hover {@apply text-yellow-200}
+    .burger-btn span {@apply block h-1 rounded bg-current;}
+    .mobile-overlay {@apply fixed inset-0 z-20 bg-gray-900/95 backdrop-blur-md;}
+    .mobile-screen-wrapper {@apply h-full;}
+    .mobile-screen {@apply h-full flex flex-col justify-center items-center px-6;}
+    .mobile-list {@apply flex flex-col items-center gap-8 text-3xl text-yellow-400
+        font-medium;}
+    .mobile-list a,
+    .mobile-list button {@apply transition-colors duration-300;}
+    .mobile-list a:hover,
+    .mobile-list button:hover,
+    .mobile-overlay button:hover {@apply text-white;}
+    .mobile-row {@apply flex items-center gap-4;}
+    .mobile-back {@apply absolute top-8 left-6 text-yellow-400 text-xl;}
+    .mobile-close {@apply absolute top-6 right-6 text-5xl text-yellow-400;}
+    .mobile-user {@apply text-white text-2xl mt-6;}
+}

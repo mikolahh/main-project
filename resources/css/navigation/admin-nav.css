@@ -1,0 +1,86 @@
+@layer components {
+    /*
+    |--------------------------------------------------------------------------
+    | Admin sidebar
+    |--------------------------------------------------------------------------
+    */
+    .admin-sidebar {
+        @apply w-64 shrink-0 bg-white border-r border-gray-200;
+    }
+    .admin-sidebar__link {
+        @apply flex items-center gap-3;
+        @apply px-3 py-2 rounded-lg;
+        @apply text-sm font-medium text-gray-700;
+        @apply transition;
+        @apply hover:bg-gray-100 hover:text-gray-900;
+    }
+    .admin-sidebar__link--active {
+        @apply bg-gray-900 text-white;
+    }
+    .admin-sidebar__link--active:hover {
+        @apply bg-gray-800 text-white;
+    }
+    .admin-sidebar__icon {
+        @apply w-4 h-4 shrink-0;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin topbar
+    |--------------------------------------------------------------------------
+    */
+    .admin-topbar {
+        @apply h-16 px-6 border-b border-gray-200 bg-white flex items-center justify-between;
+    }
+    .admin-topbar__left,
+    .admin-topbar__right {
+        @apply flex items-center;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin navigaion
+    |--------------------------------------------------------------------------
+    */    
+    
+    .admin-nav {@apply p-4;}
+    .admin-nav__list {@apply space-y-1;}
+    .admin-nav__link {
+        @apply flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-700 transition;
+    }
+    .admin-nav__link:hover {@apply bg-gray-100 text-gray-900;}
+    .admin-nav__link--active {@apply bg-gray-900 text-white;}    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin breadcrumbs
+    |--------------------------------------------------------------------------
+    */
+    .admin-breadcrumbs {@apply flex items-center text-sm;}
+    .admin-breadcrumbs__current {@apply font-semibold text-gray-900;}    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin user-menu
+    |--------------------------------------------------------------------------
+    */
+    .admin-user-menu {@apply relative;}
+    .admin-user-menu__trigger {
+        @apply flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition;
+    }
+    .admin-user-menu__info {@apply flex flex-col text-right;}
+    .admin-user-menu__name {@apply text-sm font-medium text-gray-900 leading-none;}
+    .admin-user-menu__role {@apply text-xs text-gray-500 mt-1;}
+    .admin-user-menu__icon {@apply w-4 h-4 text-gray-500;}
+
+    .admin-user-menu__dropdown {
+        @apply absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-50;
+    }
+    .admin-user-menu__link,
+    .admin-user-menu__logout {
+        @apply w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition;
+    }
+
+    
+    
+}

@@ -1,0 +1,10 @@
+Вот твой текущий план:
+1. Sidebar active state
+2. Page header component
+3. UsersTable widget
+Команда:
+php artisan make:livewire widgets.tables.users-table
+4. Подключение:
+<livewire:widgets.tables.users-table />
+в:
+livewire/pages/admin/users.blade.php

@@ -1,0 +1,118 @@
+resources/views/
+│
+├── layouts/
+│   └── app.blade.php *
+│
+├── pages/                               ← обычные Blade-страницы сайта
+│   ├── home.blade.php
+│   │
+│   ├── services/
+│   │   ├── sites.blade.php *
+│   │   ├── bots.blade.php *
+│   │   └── parsing.blade.php *
+│   │
+
+│   │
+│   └── auth/
+│       ├── login.blade.php
+│       ├── register.blade.php
+│       └── reset-password.blade.php *
+│
+├── templates/                           ← stateless blade partials/includes
+│   │
+│   ├── navigation/
+│   │   ├── desktop-menu.blade.php *
+│   │   ├── mobile-menu.blade.php *
+│   │   ├── admin-sidebar.blade.php *
+│   │   └── admin-topbar.blade.php *
+│   │
+│   ├── ui/
+│   │   ├── breadcrumbs.blade.php *
+│   │   ├── callback-btn.blade.php *
+│   │   ├── flash-message.blade.php
+│   │   ├── pagination.blade.php
+│   │   └── layer.blade.php *
+│   │
+│   ├── seo/
+│   │   ├── meta.blade.php
+│   │   ├── open-graph.blade.php
+│   │   └── schema-org.blade.php
+│   │
+│   └── admin/
+│       ├── dashboard-cards.blade.php
+│       ├── stats-row.blade.php
+│       └── quick-actions.blade.php
+│
+├── components/                          ← только Blade components (<x-...>)
+│   │
+│   ├── layouts/
+│   │   ├── admin.blade.php             ← shell/layout админки
+│   │   └── guest.blade.php
+│   │
+│   └── ui/
+│       ├── modal.blade.php *
+│       ├── button.blade.php
+│       ├── input.blade.php
+│       ├── textarea.blade.php
+│       ├── badge.blade.php
+│       ├── dropdown.blade.php
+│       └── loader.blade.php
+│
+└── livewire/
+    │
+    ├── pages/                           ← full-page Livewire components
+    │   │
+    │   ├── admin/
+    │   │   ├── dashboard.blade.php *
+    │   │   ├── users.blade.php *
+    │   │   ├── admins.blade.php *
+    │   │   ├── roles.blade.php
+    │   │   ├── settings.blade.php
+    │   │   └── logs.blade.php
+    │   │
+    │   └── site/
+    │       ├── profile.blade.php
+    │       └── notifications.blade.php
+    │
+    ├── widgets/ 
+    |   |__ header.blade.php *                   ← stateful/reusable Livewire blocks
+    │   │
+    │   ├── tables/
+    │   │   ├── users-table.blade.php
+    │   │   ├── admins-table.blade.php
+    │   │   ├── logs-table.blade.php
+    │   │   └── roles-table.blade.php
+    │   │
+    │   ├── dashboard/
+    │   │   ├── stats-widget.blade.php
+    │   │   ├── server-load-widget.blade.php
+    │   │   └── activity-widget.blade.php
+    │   │
+    │   ├── navigation/
+    │   │   ├── admin-sidebar.blade.php
+    │   │   └── admin-breadcrumbs.blade.php
+    │   │
+    │   └── notifications/
+    │       └── notifications-dropdown.blade.php
+    │
+    ├── forms/                           ← isolated Livewire forms
+    │   │
+    │   ├── auth/
+    │   │   ├── user-auth.blade.php *
+    │   │   ├── user-reg.blade.php *
+    │   │   ├── user-forg-psw.blade.php *
+    │   │   └── user-res-psw.blade.php *
+    │   │
+    │   ├── admin/
+    │   │   ├── admin-form.blade.php
+    │   │   ├── role-form.blade.php
+    │   │   ├── user-form.blade.php
+    │   │   └── settings-form.blade.php
+    │   │
+    │   └── callback.blade.php
+    │
+    └── modals/
+        ├── delete-user-modal.blade.php
+        ├── confirm-action-modal.blade.php
+        ├── invite-admin-modal.blade.php
+        └── role-permissions-modal.blade.php

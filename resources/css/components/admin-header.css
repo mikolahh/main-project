@@ -1,0 +1,28 @@
+@layer components {
+    /*
+    |--------------------------------------------------------------------------
+    | admin page header
+    |--------------------------------------------------------------------------
+    */
+    .admin-page-header {
+    @apply flex items-start justify-between gap-4;
+    }
+
+    .admin-page-header__content {
+        @apply min-w-0;
+    }
+
+    .admin-page-header__title {
+        @apply text-2xl font-bold text-gray-900;
+    }
+
+    .admin-page-header__description {
+        @apply mt-1 text-sm text-gray-500;
+    }
+
+    .admin-page-header__actions {
+        @apply shrink-0 flex items-center gap-3;
+    }
+
+    
+}

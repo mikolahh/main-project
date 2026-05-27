@@ -1,0 +1,23 @@
+composer require livewire/livewire - устанавливаем актуальную версию (4.2.4)
+после установки livewire следует понимать, что livewire жестко включает в себя alpine.js и его больше нигде и никак подключать не нужно, просто ставим:
+@livewireStyles перед </head>
+и @livewireScripts перед </body>
+а <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>  удаляем или закомментирываем
+а также удаляем, если есть, из app.js:
+import Alpine from 'alpinejs'
+Alpine.start()
+Создаем компонент в одном файле
+php artisan make:livewire draft.counter-component - создаем компонент в resources/views...
+<livewire:counter-component/> - подключаем в шаблоне
+или так: @livewire('counter-component')
+
+php artisan make:livewire draft.post.create (--sfc по умолчанию)
+можно создавать в двух файлах view-based (на основе вида в соотв. папке)
+php artisan make:livewire draft.post.create --mfc
+а также , как и в 3 версии на основе класса, тогда создается отдельо контроллер
+php artisan make:livewire draft.post.create --class
+https://livewire.laravel.com/docs/4.x/components
+
+Я склояюсь к тому, что удобее всего работать с view-based multifiles:
+php artisan make:livewire livewire.forms.callback --mfc
+контроллер и вид находятся рядом, что удобее, а 2 файла тоже удобее сопоставлять, чем в одном файле двигать, а так прото вкладки перключаешь.
